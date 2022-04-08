@@ -23,7 +23,7 @@ pipeline {
         stage('creating a container') {
             steps {
               sh "docker --version"
-              sh "docker container prune"
+              sh "echo "---------delete all contai----"
               sh "docker ps -q | xargs docker stop -y"
               sh "docker ps -q | xargs docker rm -f"  
               sh "docker run -d --name nginxcontainer -p 80:80 3.219.234.74:9000/nginxapp:1" 
