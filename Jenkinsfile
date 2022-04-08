@@ -23,7 +23,7 @@ pipeline {
         stage('creating a container') {
             steps {
               sh "docker --version"
-                sh "docker rm -f '${(docker ps -aq)}'"
+                sh "docker rm -f "${'(docker ps -aq)'}""
               sh "docker run -d --name nginxcontainer -p 80:80 3.219.234.74:9000/nginxapp:1" 
             }
         }
