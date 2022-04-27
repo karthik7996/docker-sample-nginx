@@ -9,22 +9,16 @@ pipeline {
         stage('builddockerimage') {
             steps {
               sh "docker --version"
-              sh "docker build -t 3.219.234.74:9000/nginxapp:1 ." 
+              sh "docker build -t nginxapp:1 ." 
              
             }
         }
-        stage('pushing a image'){
-            steps {
-                sh " docker login http://3.219.234.74:9000 -u admin -p 1234"
-                sh "docker push 3.219.234.74:9000/nginxapp:1"
-
-            }
-        }
+        
         stage('creating a container') {
             steps {
               sh "docker --version"
               sh "docker rm -f nginxcontainer"
-              sh "docker run -d --name nginxcontainer -p 80:80 3.219.234.74:9000/nginxapp:1" 
+              sh "docker run -d --name nginxcontainer -p 500:80 3.219.234.74:9000/nginxapp:1" 
             }
         }
     }
