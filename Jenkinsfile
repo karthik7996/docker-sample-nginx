@@ -18,7 +18,7 @@ pipeline {
             steps {
               sh "docker --version"
               sh "docker rm -f nginxcontainer"
-              sh "docker run -d --name nginxcontainer -p 500:80 3.219.234.74:9000/nginxapp:1" 
+              sh "docker run -d --name nginxcontainer -p 500:80 nginxapp:1" 
             }
         }
     }
