@@ -30,6 +30,6 @@ spec:
   type: NodePort
   ports:
     - port: 30001
-      targetPort: 80
+      targetPort: 30001
   selector:
     name: javawebapp
