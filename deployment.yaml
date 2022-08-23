@@ -29,7 +29,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-    - port: 8080
+    - port: 30001
       targetPort: 8080
   selector:
     name: javawebapp
