@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+   name: javawebapp
+spec:
+   replicas: 1
+   selector:
+    matchLabels:
+     name: javawebapp
+   template:
+     metadata:
+       name: test-pod
+       labels:
+         name: javawebapp
+     spec:
+      containers:
+        - image: cloudzenix/harness
+          name: javawebapp
+          ports:
+           - containerPort: 8080
+---
+# Node Port Service
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: javawebapp
+  name: javawebapp
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 8080
+      targetPort: 8080
+  selector:
+    name: javawebapp
