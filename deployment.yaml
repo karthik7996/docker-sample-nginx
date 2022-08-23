@@ -27,9 +27,9 @@ metadata:
     name: javawebapp
   name: javawebapp
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-    - port: 30005
+    - port: 80
       targetPort: 80
   selector:
     name: javawebapp
