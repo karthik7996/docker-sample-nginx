@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-   name: javawebapp
+   name: nginx
 spec:
    replicas: 1
    selector:
-    matchLabels:
-     name: javawebapp
+    matchLabels: nginx
+     name: 
    template:
      metadata:
        name: test-pod
        labels:
-         name: javawebapp
+         name: nginx
      spec:
       containers:
         - image: cloudzenix/harness
-          name: javawebapp
+          name: nginx
           ports:
            - containerPort: 80
 ---
@@ -24,12 +24,12 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    name: javawebapp
-  name: javawebapp
+    name: nginx
+  name: nginx
 spec:
   type: LoadBalancer
   ports:
     - port: 80
       targetPort: 80
   selector:
-    name: javawebapp
+    name: nginx
