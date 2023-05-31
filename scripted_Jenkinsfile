@@ -1,0 +1,20 @@
+node {
+    stage('Clone Repository') {
+        // Clone the repository from Git
+        git 'https://github.com/karthik7996/docker-sample-nginx.git'
+    }
+    
+    stage('Build') {
+        // Build your project (replace with your build commands)
+              sh "docker login --username=karthik79968 --password=Karthik@13579"
+              sh "docker build -t karthik79968/rapyder_001:1 ."
+              sh "docker push karthik79968/rapyder_001:1"
+    }
+    
+    stage('Deploy') {
+        // Deploy your application 
+        sh 'aws eks update-kubeconfig --region us-east-1 --name my-eks-cluster'
+        sh 'kubectl apply -f deployment_01.yaml'
+        sh 'kubectl get all'
+    }
+}
