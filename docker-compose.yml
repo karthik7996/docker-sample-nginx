@@ -1,6 +1,6 @@
 version: "3"
 services:
     web:
-        image: karthik79968/rapyder_001
+        image: ngnix
         ports:
             - 80:80
