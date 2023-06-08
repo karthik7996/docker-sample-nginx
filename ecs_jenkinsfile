@@ -1,0 +1,27 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('checkout') {
+            steps {
+                git 'https://github.com/karthik7996/docker-sample-nginx.git'   
+                
+            }
+        }
+        stage('builddockerimage') {
+            steps {
+              sh "docker login --username=karthik79968 --password=Karthik@13579"
+              sh "docker build -t karthik79968/rapyder_001:1 ."
+              sh "docker push karthik79968/rapyder_001:1"
+            }
+        }
+        stage("deploy in ecs") {
+            steps {
+              sh "ecs-cli configure --cluster Ecs_1 --default-launch-type FARGATE --region us-east-1"
+              sh "ecs-cli compose --project-name karthik_ecs --cluster Ecs_1 service up --launch-type FARGATE"
+              sh "ecs-cli compose --project-name karthik_ecs --cluster Ecs_1 service ps"
+            }
+        }
+        
+    }
+} 
